@@ -1,7 +1,3 @@
-/* body {
-    background: rgb(238, 174, 202);
-    background: radial-gradient(circle, rgba(223, 165, 190, 0.89) 0%, rgba(148, 187, 233, 1) 100%);
-} */
 :root {
     --star-color-A: white;
     --star-color-B: transparent;
@@ -9,17 +5,14 @@
 
 html,
 body {
-    min-height: 100%;
-
+    height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
     font-family: "Modak", sans-serif;
-
 }
 
 body {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
     background: linear-gradient(0deg, rgba(148, 187, 233, 1) 0%, rgba(194, 174, 238, 1) 86%);
 }
 
@@ -28,16 +21,8 @@ body {
     font-size: 120px;
     font-weight: 450;
     margin: auto;
-    width: 50%;
     background-color: rgba(0, 0, 0, 0);
-
-}
-
-#panpan {
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
-    height: 90vh;
+    text-align: center;
 }
 
 .circle {
@@ -126,4 +111,64 @@ body {
     80% {
         background-color: var(--star-color-A);
     }
+}
+#entry {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    bottom: 10%;
+}
+
+#cinn {
+    position: relative;
+    z-index: 1;
+}
+
+.thought {
+    display: flex;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 30px;
+    min-width: 40px;
+    max-width: 220px;
+    min-height: 40px;
+    margin: 20px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: fit-content;
+}
+
+.thought:before,
+.thought:after {
+    content: "";
+    background-color: #fff;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    z-index: -1;
+}
+
+.thought:before {
+    width: 44px;
+    height: 44px;
+    top: -12px;
+    left: 28px;
+    box-shadow: -50px 30px 0 -12px #fff;
+}
+
+.thought:after {
+    bottom: -10px;
+    right: 26px;
+    width: 30px;
+    height: 30px;
+    box-shadow: 40px -34px 0 0 #fff,
+        -28px -6px 0 -2px #fff,
+        -24px 17px 0 -6px #fff,
+        -5px 25px 0 -10px #fff;
+
 }

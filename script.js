@@ -19,8 +19,8 @@ function createStar(size) {
     let widthAndHeight = random(size, 'px');
     circle.style.height = circle.style.width = widthAndHeight;
 
-    circle.style.left = random(window.innerWidth, 'px');
-    circle.style.top = random(window.innerHeight, 'px');
+    circle.style.left = random(document.body.clientWidth, 'px');
+    circle.style.top = random(document.body.clientHeight, 'px');
 
     sky.appendChild(circle);
 }
