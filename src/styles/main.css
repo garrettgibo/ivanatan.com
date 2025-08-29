@@ -1,0 +1,546 @@
+/* ...existing code... */
+:root {
+    /* Catppuccin Mocha palette (complete set) */
+    --cp-rosewater: #f5e0dc;
+    --cp-flamingo: #f2cdcd;
+    --cp-pink: #f5c2e7;
+    --cp-mauve: #cba6f7;
+    --cp-red: #f38ba8;
+    --cp-maroon: #eba0ac;
+    --cp-peach: #fab387;
+    --cp-yellow: #f9e2af;
+    --cp-green: #a6e3a1;
+    --cp-teal: #94e2d5;
+    --cp-sky: #89dceb;
+    --cp-sapphire: #74c7ec;
+    --cp-blue: #89b4fa;
+    --cp-lavender: #b4befe;
+
+    /* UI tokens */
+    --cp-text: #cdd6f4;
+    --cp-subtext1: #bac2de;
+    --cp-subtext0: #9aa0b3;
+    --cp-overlay2: #6e6a86;
+    --cp-overlay1: #585c6a;
+    --cp-overlay0: #11111b;
+    --cp-surface2: #1f1d2e;
+    --cp-surface1: #181825;
+    --cp-surface0: #11111b;
+
+    /* background layers */
+    --cp-base: #1e1e2e;
+    --cp-mantle: #181825;
+    --cp-crust: #11111b;
+
+    /* helpers / sizing */
+    --cp-radius: 12px;
+
+    /* RGB helpers for derived translucents (keep in sync with above hex values) */
+    --cp-rosewater-rgb: 245, 224, 220;
+    --cp-flamingo-rgb: 242, 205, 205;
+    --cp-pink-rgb: 245, 194, 231;
+    --cp-mauve-rgb: 203, 166, 247;
+    --cp-peach-rgb: 250, 179, 135;
+    --cp-yellow-rgb: 249, 226, 175;
+    --cp-teal-rgb: 148, 226, 213;
+    --cp-sky-rgb: 137, 220, 235;
+    --cp-sapphire-rgb: 116, 199, 236;
+    --cp-lavender-rgb: 180, 190, 254;
+
+    /* semantic accents */
+    --cp-accent-1: var(--cp-rosewater);
+    --cp-accent-2: var(--cp-flamingo);
+    --cp-accent-3: var(--cp-pink);
+    --cp-accent-4: var(--cp-mauve);
+    --cp-accent-5: var(--cp-red);
+    --cp-accent-6: var(--cp-maroon);
+    --cp-accent-7: var(--cp-peach);
+    --cp-accent-8: var(--cp-yellow);
+    --cp-accent-9: var(--cp-green);
+    --cp-accent-10: var(--cp-teal);
+    --cp-accent-11: var(--cp-sky);
+    --cp-accent-12: var(--cp-sapphire);
+    --cp-accent-13: var(--cp-blue);
+    --cp-accent-14: var(--cp-lavender);
+
+    --cp-blue-rgb: 137, 180, 250;
+    --cp-green-rgb: 166, 227, 161;
+    --cp-text-rgb: 205, 214, 244;
+    --cp-crust-rgb: 17, 17, 27;
+
+    /* translucent / derived */
+    --cp-blue-14: rgba(var(--cp-blue-rgb), .14);
+    --cp-blue-12: rgba(var(--cp-blue-rgb), .12);
+    --cp-blue-08: rgba(var(--cp-blue-rgb), .08);
+    --cp-blue-06: rgba(var(--cp-blue-rgb), .06);
+
+    --cp-green-14: rgba(var(--cp-green-rgb), .14);
+    --cp-green-12: rgba(var(--cp-green-rgb), .12);
+    --cp-green-08: rgba(var(--cp-green-rgb), .08);
+    --cp-green-04: rgba(var(--cp-green-rgb), .04);
+
+    --cp-surface-elev-start: rgba(var(--cp-text-rgb), .02);
+    --cp-surface-elev-end: rgba(var(--cp-text-rgb), .01);
+    --cp-shadow: 0 6px 18px rgba(var(--cp-crust-rgb), .6);
+    --cp-focus: rgba(var(--cp-blue-rgb), .12);
+}
+
+/* Reset & base */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* solid background instead of gradient */
+    background-color: var(--cp-base);
+    color: var(--cp-text);
+    padding: 16px;
+}
+
+/* App container */
+#app {
+    width: 100%;
+    max-width: 420px;
+}
+
+/* Card base */
+.flashcard,
+.flashcard-card {
+    width: 100%;
+    border-radius: var(--cp-radius);
+    /* use a single solid surface color */
+    background-color: var(--cp-surface1);
+    color: var(--cp-text);
+    padding: 18px;
+    box-shadow: var(--cp-shadow);
+    border: 1px solid rgba(var(--cp-text-rgb), .03);
+    text-align: center;
+    backdrop-filter: blur(6px);
+}
+
+/* Header / category */
+.flashcard-category {
+    font-size: 12px;
+    color: var(--cp-subtext1);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-bottom: 8px;
+}
+
+/* Question */
+.flashcard-question {
+    font-size: 20px;
+    line-height: 1.3;
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+}
+
+/* Controls container */
+.flashcard-controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Shared button styles */
+.flashcard-prev,
+.flashcard-next,
+.button {
+    border: 0;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition:
+        transform .14s cubic-bezier(.2, .9, .3, 1),
+        box-shadow .18s ease,
+        background .18s ease,
+        color .12s ease;
+    will-change: transform, box-shadow;
+    background-clip: padding-box;
+    font-weight: 600;
+    /* buttons will use solid colors */
+    color: var(--cp-crust);
+}
+
+/* Prev / Next theming (solid colors) */
+.flashcard-prev {
+    background-color: var(--cp-blue);
+    color: var(--cp-crust);
+}
+
+.flashcard-next {
+    background-color: var(--cp-green);
+    color: var(--cp-crust);
+}
+
+/* Hover, active, focus (theme-driven) */
+.flashcard-prev:hover,
+.flashcard-next:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(var(--cp-crust-rgb), .45);
+    filter: brightness(.96);
+}
+
+.flashcard-prev:focus-visible,
+.flashcard-next:focus-visible {
+    outline: 0;
+    box-shadow: 0 0 0 4px var(--cp-focus);
+}
+
+/* Category list / generic button: solid color */
+.button {
+    display: inline-block;
+    width: 100%;
+    background-color: var(--cp-blue);
+    color: var(--cp-crust);
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.button:hover {
+    filter: brightness(.98);
+}
+
+/* Form controls use theme tokens */
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+    color: var(--cp-text);
+    background-color: var(--cp-surface2);
+    border: 1px solid rgba(var(--cp-text-rgb), .06);
+    padding: 8px;
+    border-radius: 8px;
+}
+
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px var(--cp-focus);
+}
+
+/* Tiny helpers */
+.badge,
+.pill {
+    background-color: var(--cp-surface1);
+    color: var(--cp-text);
+    border: 1px solid rgba(var(--cp-text-rgb), .03);
+    padding: 4px 8px;
+    border-radius: 999px;
+}
+
+/* Category picker specifics */
+.category-grid {
+    margin-top: 8px;
+}
+
+.category-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 88px;
+    padding: 12px;
+    border-radius: 10px;
+    background-color: var(--cp-surface2);
+    border: 1px solid rgba(var(--cp-text-rgb), .04);
+    color: var(--cp-text);
+    text-align: left;
+}
+
+.category-card-title {
+    font-weight: 700;
+    color: var(--cp-text);
+}
+
+.category-card-preview {
+    color: var(--cp-subtext0);
+    font-size: 13px;
+}
+
+/* search input */
+.search-input {
+    background-color: var(--cp-surface2);
+    border: 1px solid rgba(var(--cp-text-rgb), .06);
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: var(--cp-text);
+}
+
+/* Back button on flashcard screen */
+.flashcard-back {
+    display: inline-block;
+    margin-bottom: 6px;
+    background-color: var(--cp-surface2);
+    color: var(--cp-text);
+    border-radius: 8px;
+    padding: 8px 10px;
+    border: 1px solid rgba(var(--cp-text-rgb), .06);
+}
+
+/* ensure button styles align with existing palette */
+.button {
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .flashcard-question {
+        font-size: 18px;
+    }
+
+    .flashcard-prev,
+    .flashcard-next,
+    .button {
+        font-size: 15px;
+        padding: 9px;
+    }
+}
+
+
+/* Category carousel */
+.category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.category-hint {
+    display: none;
+}
+
+/* Carousel root */
+.category-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+/* Carousel track: horizontal scroll with snap for mobile */
+.category-carousel-track {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+    width: 100%;
+}
+
+/* individual card: make it prominent on mobile */
+.category-card.carousel-item {
+    flex: 0 0 78%;
+    scroll-snap-align: start;
+    border-radius: 12px;
+    padding: 14px;
+    text-align: left;
+    min-height: 96px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    background-color: var(--cp-surface2);
+    border: 1px solid rgba(var(--cp-text-rgb), .04);
+    color: var(--cp-text);
+    box-shadow: none;
+}
+
+/* Title + preview */
+.category-card-title {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.category-card-preview {
+    font-size: 13px;
+    color: var(--cp-subtext0);
+}
+
+/* Carousel nav (arrows) */
+.carousel-nav {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    display: none;
+    /* shown on wider screens */
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cp-surface2);
+    border: 1px solid rgba(var(--cp-text-rgb), .06);
+    color: var(--cp-text);
+    cursor: pointer;
+}
+
+/* responsive layout: show nav on tablets/desktop, adjust card sizes */
+@media (min-width: 560px) {
+    .category-card.carousel-item {
+        flex: 0 0 46%;
+    }
+
+    .category-hint {
+        display: block;
+        opacity: .7;
+        font-size: 13px;
+    }
+
+    .carousel-nav {
+        display: flex;
+    }
+}
+
+@media (min-width: 900px) {
+    .category-card.carousel-item {
+        flex: 0 0 28%;
+    }
+
+    .category-hint {
+        display: block;
+    }
+}
+
+/* focus styles */
+.category-card:focus {
+    outline: none;
+    box-shadow: 0 6px 18px rgba(var(--cp-crust-rgb), .36);
+    transform: translateY(-4px);
+}
+
+/* ensure the Surprise me button remains compact on mobile */
+.category-header .button {
+    padding: 8px 10px;
+    min-width: auto;
+}
+.button,
+.flashcard-prev,
+.flashcard-next {
+    background-image: linear-gradient(135deg, var(--cp-accent-7), var(--cp-accent-2));
+    background-size: 200% 200%;
+    color: var(--cp-crust);
+    border: 0;
+}
+
+/* stronger distinct gradients for Prev/Next so they read as separate actions */
+.flashcard-prev {
+    background-image: linear-gradient(135deg, var(--cp-blue), var(--cp-sapphire));
+}
+
+.flashcard-next {
+    background-image: linear-gradient(135deg, var(--cp-green), var(--cp-teal));
+}
+
+/* subtle animated sheen on interactive buttons */
+.button:hover,
+.flashcard-prev:hover,
+.flashcard-next:hover {
+    background-position: 100% 0;
+    filter: brightness(1.02);
+}
+
+/* use accents for category titles and small UI text */
+.flashcard-category {
+    color: rgba(var(--cp-mauve-rgb), .85);
+    letter-spacing: .08em;
+}
+
+/* question area: use a translucent accent halo (keeps readability) */
+.flashcard-question {
+    background: linear-gradient(180deg, rgba(var(--cp-text-rgb), .02), transparent);
+    border-radius: calc(var(--cp-radius) - 6px);
+    padding: 12px;
+    box-shadow: inset 0 1px 0 rgba(var(--cp-crust-rgb), .02);
+}
+
+/* badges and pills pick up subtle accent outlines */
+.badge,
+.pill {
+    background: linear-gradient(180deg, rgba(var(--cp-text-rgb), .02), rgba(var(--cp-text-rgb), .01));
+    border-left: 4px solid var(--cp-accent-6);
+}
+
+/* category cards: apply gentle left accent and alternating tint so categories feel colorful */
+.category-card {
+    background: linear-gradient(180deg, rgba(var(--cp-text-rgb), .015), transparent), var(--cp-surface2);
+    border-left-width: 4px;
+    border-left-style: solid;
+    border-left-color: rgba(var(--cp-text-rgb), .03);
+    transition: transform .14s ease, box-shadow .14s ease;
+}
+
+/* alternate accents by position so the carousel appears colorful */
+.category-card.carousel-item:nth-child(1) { border-left-color: var(--cp-accent-1); }
+.category-card.carousel-item:nth-child(2) { border-left-color: var(--cp-accent-2); }
+.category-card.carousel-item:nth-child(3) { border-left-color: var(--cp-accent-3); }
+.category-card.carousel-item:nth-child(4) { border-left-color: var(--cp-accent-4); }
+.category-card.carousel-item:nth-child(5) { border-left-color: var(--cp-accent-5); }
+.category-card.carousel-item:nth-child(6) { border-left-color: var(--cp-accent-6); }
+.category-card.carousel-item:nth-child(7) { border-left-color: var(--cp-accent-7); }
+.category-card.carousel-item:nth-child(8) { border-left-color: var(--cp-accent-8); }
+.category-card.carousel-item:nth-child(9) { border-left-color: var(--cp-accent-9); }
+.category-card.carousel-item:nth-child(10) { border-left-color: var(--cp-accent-10); }
+.category-card.carousel-item:nth-child(11) { border-left-color: var(--cp-accent-11); }
+.category-card.carousel-item:nth-child(12) { border-left-color: var(--cp-accent-12); }
+.category-card.carousel-item:nth-child(13) { border-left-color: var(--cp-accent-13); }
+.category-card.carousel-item:nth-child(14) { border-left-color: var(--cp-accent-14); }
+.category-card.carousel-item:nth-child(15) { border-left-color: var(--cp-accent-1); }
+.category-card.carousel-item:nth-child(16) { border-left-color: var(--cp-accent-2); }
+.category-card.carousel-item:nth-child(17) { border-left-color: var(--cp-accent-3); }
+.category-card.carousel-item:nth-child(18) { border-left-color: var(--cp-accent-4); }
+.category-card.carousel-item:nth-child(19) { border-left-color: var(--cp-accent-5); }
+.category-card.carousel-item:nth-child(20) { border-left-color: var(--cp-accent-6); }
+
+/* on focus/hover, lift and tint with the card's accent */
+.category-card.carousel-item:focus,
+.category-card.carousel-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(var(--cp-crust-rgb), .24);
+}
+
+/* flashcard container elevation — add a soft accent rim */
+.flashcard-card {
+    border: 1px solid rgba(var(--cp-text-rgb), .03);
+    box-shadow: 0 10px 30px rgba(var(--cp-crust-rgb), .45);
+    position: relative;
+    overflow: visible;
+}
+
+/* tiny accent footer added to card for visual interest */
+.flashcard-card::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 8px;
+    height: 4px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--cp-accent-7), var(--cp-accent-5));
+    opacity: .12;
+    pointer-events: none;
+}
+
+/* keep responsive adjustments but preserve accent rules */
+@media (max-width: 600px) {
+    .category-card.carousel-item:nth-child(n) { border-left-width: 3px; }
+}
