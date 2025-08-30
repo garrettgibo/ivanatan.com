@@ -1,12 +1,12 @@
 import path from 'path';
 import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   // serve/build from the src folder where index.html lives
   root: path.resolve(__dirname, 'src'),
 
-  plugins: [vue()],
+  plugins: [react()],
   server: {
     port: 3000,
     open: true,

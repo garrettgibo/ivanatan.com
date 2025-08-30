@@ -1,7 +1,7 @@
 {
   "categories": [
     {
-      "category": "Romantic Reflections",
+      "name": "Romantic Reflections",
       "questions": [
         "What was your first impression of me?",
         "What's your favorite memory of us?",
@@ -56,7 +56,7 @@
       ]
     },
     {
-      "category": "Fun & Silly",
+      "name": "Fun & Silly",
       "questions": [
         "If we were a famous duo, who would we be?",
         "What's the weirdest food combo you secretly love?",
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "category": "Relationship Growth",
+      "name": "Relationship Growth",
       "questions": [
         "What's something you've learned from me?",
         "What's a challenge we've overcome together?",
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "category": "Getting to Know You",
+      "name": "Getting to Know You",
       "questions": [
         "What's your favorite childhood memory?",
         "What's a hobby you've always wanted to try?",
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "category": "Travel & Adventure",
+      "name": "Travel & Adventure",
       "questions": [
         "What's your dream travel destination?",
         "What's the most adventurous thing you've ever done?",
@@ -276,7 +276,7 @@
       ]
     },
     {
-      "category": "Family & Upbringing",
+      "name": "Family & Upbringing",
       "questions": [
         "What's a value your family taught you?",
         "What's your relationship like with your siblings?",
@@ -331,7 +331,7 @@
       ]
     },
     {
-      "category": "Dreams & Ambitions",
+      "name": "Dreams & Ambitions",
       "questions": [
         "What's a dream you've never shared with anyone?",
         "What motivates you to keep going?",
@@ -387,7 +387,7 @@
       ]
     },
     {
-      "category": "Rapid Fire: This or That",
+      "name": "Rapid Fire: This or That",
       "questions": [
         "Coffee or tea?",
         "Beach or mountains?",
@@ -442,7 +442,7 @@
       ]
     },
     {
-      "category": "Personal Growth & Self-Discovery",
+      "name": "Personal Growth & Self-Discovery",
       "questions": [
         "What's a habit that's changed your life?",
         "What's something you've recently learned about yourself?",
@@ -497,7 +497,7 @@
       ]
     },
     {
-      "category": "Playful Hypotheticals",
+      "name": "Playful Hypotheticals",
       "questions": [
         "If you could live in any fictional universe, which one would it be?",
         "If you could time travel, where would you go first?",
@@ -552,7 +552,7 @@
       ]
     },
     {
-      "category": "Intimacy & Vulnerability",
+      "name": "Intimacy & Vulnerability",
       "questions": [
         "What's a moment you felt emotionally exposed with me?",
         "What's something you're afraid to say out loud?",
@@ -607,7 +607,7 @@
       ]
     },
     {
-      "category": "Life Philosophy & Beliefs",
+      "name": "Life Philosophy & Beliefs",
       "questions": [
         "What's your personal definition of happiness?",
         "What do you believe is the purpose of life?",
@@ -662,7 +662,7 @@
       ]
     },
     {
-      "category": "Memories & Milestones",
+      "name": "Memories & Milestones",
       "questions": [
         "What's your earliest memory?",
         "What's a milestone you're proud of?",
@@ -718,7 +718,7 @@
       ]
     },
     {
-      "category": "Favorites & Preferences",
+      "name": "Favorites & Preferences",
       "questions": [
         "What's your favorite movie of all time?",
         "What's your favorite book?",
@@ -773,7 +773,7 @@
       ]
     },
     {
-      "category": "Conflict & Communication",
+      "name": "Conflict & Communication",
       "questions": [
         "What's your communication style during conflict?",
         "What's something that helps you feel heard?",
@@ -828,7 +828,7 @@
       ]
     },
     {
-      "category": "Couple Goals & Shared Vision",
+      "name": "Couple Goals & Shared Vision",
       "questions": [
         "What's a goal you want us to achieve together?",
         "What's a tradition you want to start as a couple?",
@@ -883,7 +883,7 @@
       ]
     },
     {
-      "category": "Passions & Creativity",
+      "name": "Passions & Creativity",
       "questions": [
         "What's a creative outlet you love?",
         "What's a passion project you've dreamed of starting?",
@@ -938,7 +938,7 @@
       ]
     },
     {
-      "category": "Playful Challenges & Games",
+      "name": "Playful Challenges & Games",
       "questions": [
         "What's your favorite game to play together?",
         "What's a challenge we should try as a couple?",
@@ -993,7 +993,7 @@
       ]
     },
     {
-      "category": "Sensory & Imaginative Experiences",
+      "name": "Sensory & Imaginative Experiences",
       "questions": [
         "What's a sound that instantly calms you?",
         "What's a scent that brings back memories?",
@@ -1048,7 +1048,7 @@
       ]
     },
     {
-      "category": "Love & Affection",
+      "name": "Love & Affection",
       "questions": [
         "What's your favorite way to receive affection?",
         "What's a gesture that makes you feel loved?",
