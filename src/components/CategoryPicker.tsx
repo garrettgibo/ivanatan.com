@@ -170,9 +170,9 @@ export function CategoryPicker({ categories, onSelect }: CategoryPickerProps) {
             aria-label="Previous category"
             title="Previous category"
             onClick={() => {
-                if (categories.length === 0) return;
-                setActiveIndex(i => (i - 1 + categories.length) % categories.length);
-              }}
+              if (categories.length === 0) return;
+              setActiveIndex(i => (i - 1 + categories.length) % categories.length);
+            }}
           >
             ‹
           </button>
@@ -191,9 +191,9 @@ export function CategoryPicker({ categories, onSelect }: CategoryPickerProps) {
             aria-label="Next category"
             title="Next category"
             onClick={() => {
-                if (categories.length === 0) return;
-                setActiveIndex(i => (i + 1) % categories.length);
-              }}
+              if (categories.length === 0) return;
+              setActiveIndex(i => (i + 1) % categories.length);
+            }}
           >
             ›
           </button>

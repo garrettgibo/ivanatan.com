@@ -29,6 +29,7 @@ export function App() {
   return (
     <FlashcardViewer
       category={data.categories[selectedCategoryIndex]}
+      categoryIndex={selectedCategoryIndex}
       onBack={() => setSelectedCategoryIndex(null)}
     />
   );

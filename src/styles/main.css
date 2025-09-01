@@ -270,3 +270,190 @@ body {
   .carousel-card-title { font-size: 13px; }
   .carousel-nav, .carousel-random { width: 44px; height: 44px; }
 }
+
+/* Flashcard viewer styles */
+/* Flashcard viewer: centered panel and accent handling */
+.flashcard-viewer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 48px);
+  padding: 20px;
+  box-sizing: border-box;
+}
+.flashcard-panel {
+  width: 100%;
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 12px;
+  box-sizing: border-box;
+  /* per-category accent color (can be set from JS by updating this variable on the panel)
+     default maps to a pleasant blue so category text is colorful */
+  --flashcard-category-accent: var(--cp-blue);
+}
+.flashcard-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.flashcard-progress {
+  --flashcard-progress-percent: 0%; /* set inline from JS to show visual fill */
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  min-width: 84px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--cp-surface0);
+  background: linear-gradient(180deg, var(--cp-overlay2), var(--cp-overlay1));
+  border-radius: 10px;
+  border: 0px solid rgba(0,0,0,0.06);
+  box-shadow: var(--cp-shadow);
+  overflow: hidden;
+}
+.flashcard-progress::before {
+  /* subtle visual fill; width can be controlled with --flashcard-progress-percent */
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: var(--flashcard-progress-percent, 0%);
+  background: linear-gradient(90deg, rgba(var(--cp-rosewater-rgb,245,224,220),.18), rgba(var(--cp-sapphire-rgb,116,199,236),.18));
+  opacity: 1;
+  z-index: 0;
+}
+.flashcard-progress__text {
+  position: relative;
+  z-index: 1;
+  color: var(--cp-surface0);
+}
+.flashcard-back {
+  background: transparent;
+  color: var(--cp-text);
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+.flashcard-main {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flashcard-card {
+  width: 100%;
+  max-width: 640px;
+  /* fixed card height to keep layout stable */
+  --flashcard-card-h: 150px;
+  height: var(--flashcard-card-h);
+  background: linear-gradient(180deg, rgba(var(--cp-rosewater-rgb,245,224,220), .08), rgba(var(--cp-blue-rgb,137,180,250), .04));
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 18px 48px rgba(0,0,0,.36);
+  color: var(--cp-surface0);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: stretch;
+  text-align: center;
+  margin: 0 auto; /* center card */
+}
+
+/* Card stack visuals for swipe interactions */
+.card-stack { position: relative; width: 100%; max-width: 640px; height: var(--flashcard-card-h); }
+.card-stack .flashcard-card { position: absolute; left: 0; top: 0; right: 0; }
+.card-stack .under-card {
+  transform: translateY(10px) scale(0.96);
+  opacity: 0.9;
+  z-index: 1;
+  pointer-events: none;
+}
+.card-stack .top-card { z-index: 2; }
+.flashcard-category {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--flashcard-category-accent);
+  letter-spacing: 0.6px;
+}
+.flashcard-question {
+    height: 100%;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+  /* lighter than the category accent but still high contrast against card bg */
+  color: var(--cp-subtext1);
+  /* ensure long text doesn't resize the card; make it scrollable */
+  overflow: auto;
+  /* hide native scrollbars but keep scrolling enabled */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  /* reserve space for category and padding: subtract ~80px (category + gaps) */
+  max-height: calc(var(--flashcard-card-h) - 120px);
+  text-align: center;
+  padding: 6px 4px;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+/* hide webkit scrollbars for the flashcard question area */
+.flashcard-question::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+.flashcard-controls {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.flashcard-prev,
+.flashcard-next {
+  /* match carousel nav styling */
+  background: linear-gradient(180deg, var(--cp-overlay2), var(--cp-overlay1));
+  border: 0px solid rgba(0,0,0,0.06);
+  color: var(--cp-surface0);
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--cp-shadow);
+  font-size: 26px;
+  transition: transform 160ms, opacity 160ms;
+}
+.flashcard-prev:disabled,
+.flashcard-next:disabled { opacity: .32; cursor: default; transform: none; }
+
+@media (max-width: 520px) {
+  .flashcard-card { padding: 18px; }
+  .flashcard-question { font-size: 18px; }
+}
+
+/* Drag & animation helpers for flashcard swipe */
+.flashcard-card {
+  transition: transform 220ms cubic-bezier(.2,.9,.2,1);
+  will-change: transform;
+  touch-action: pan-y; /* allow vertical scroll while preventing horizontal touch actions */
+  cursor: grab;
+}
+.flashcard-card.dragging {
+  transition: none;
+  cursor: grabbing;
+}
+.flashcard-card.animating {
+  transition: transform 320ms cubic-bezier(.2,.9,.2,1);
+}
