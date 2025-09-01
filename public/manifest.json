@@ -1,6 +1,6 @@
 {
-  "name": "Flashcard Experience",
-  "short_name": "Flashcards",
+  "name": "1000 Questions",
+  "short_name": "1000 Questions",
   "description": "A fun flashcard-like experience for asking relationship questions.",
   "start_url": "/",
   "display": "standalone",

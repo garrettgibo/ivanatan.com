@@ -1,5 +1,5 @@
 {
-  "name": "flashcard-ios-web",
+  "name": "1000-questions",
   "version": "1.0.0",
   "description": "A fun flashcard-like experience for asking questions.",
   "main": "src/main.ts",
@@ -14,7 +14,7 @@
     "web",
     "mobile"
   ],
-  "author": "Your Name",
+  "author": "Garrett Gibo",
   "license": "MIT",
   "dependencies": {
     "react": "^19.1.1",
