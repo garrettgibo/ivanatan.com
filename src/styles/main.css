@@ -1,0 +1,459 @@
+:root {
+    /* Catppuccin Mocha palette (complete set) */
+    --cp-rosewater: #f5e0dc;
+    --cp-flamingo: #f2cdcd;
+    --cp-pink: #f5c2e7;
+    --cp-mauve: #cba6f7;
+    --cp-red: #f38ba8;
+    --cp-maroon: #eba0ac;
+    --cp-peach: #fab387;
+    --cp-yellow: #f9e2af;
+    --cp-green: #a6e3a1;
+    --cp-teal: #94e2d5;
+    --cp-sky: #89dceb;
+    --cp-sapphire: #74c7ec;
+    --cp-blue: #89b4fa;
+    --cp-lavender: #b4befe;
+
+    /* UI tokens */
+    --cp-text: #cdd6f4;
+    --cp-subtext1: #bac2de;
+    --cp-subtext0: #9aa0b3;
+    --cp-overlay2: #6e6a86;
+    --cp-overlay1: #585c6a;
+    --cp-overlay0: #11111b;
+    --cp-surface2: #1f1d2e;
+    --cp-surface1: #181825;
+    --cp-surface0: #11111b;
+
+    /* background layers */
+    --cp-base: #1e1e2e;
+    --cp-mantle: #181825;
+    --cp-crust: #11111b;
+}
+
+/* Reset & base */
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cp-base);
+    color: var(--cp-text);
+    overflow: hidden; 
+    touch-action: none;
+}
+
+/* App container */
+#app {
+    height: 100%;
+    width: 100%;
+    max-width: 420px;
+}
+/* Centering wrapper to place the carousel in the middle of the page */
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 48px); /* adjust if you have a header/footer */
+  /* padding: 20px; */
+  box-sizing: border-box;
+}
+
+/* Carousel (vertical stack: track above, controls below) */
+.carousel {
+  --carousel-item-w: 170px;
+  --carousel-gap: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 920px;
+  box-sizing: border-box;
+  padding: 12px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Window that hides overflow */
+.carousel-window {
+  width: 100%;
+  /* overflow: hidden; */
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+
+/* Track of items */
+.carousel-track {
+  display: flex;
+  align-items: center;
+  gap: var(--carousel-gap);
+  transition: transform 420ms cubic-bezier(.2,.9,.2,1);
+  will-change: transform;
+  padding: 12px 6px;
+}
+
+/* Individual item card */
+.carousel-item {
+  flex: 0 0 var(--carousel-item-w);
+  width: var(--carousel-item-w);
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 300ms, box-shadow 300ms, opacity 300ms;
+  transform-origin: center;
+  opacity: 0.78;
+  border-radius: 14px;
+  outline: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* focus and active */
+.carousel-item:focus {
+  box-shadow: 0 6px 20px rgba(0,0,0,.45);
+}
+.carousel-item.active {
+  transform: scale(1.12);
+  opacity: 1;
+  z-index: 3;
+}
+
+/* card surface */
+.carousel-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* subtle default surface using palette vars */
+  background: linear-gradient(180deg, var(--cp-rosewater), rgba(255,255,255,0));
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.32);
+  color: var(--cp-surface0); /* dark text for high contrast */
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+/* title */
+.carousel-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.12;
+  padding: 6px 10px;
+  color: var(--cp-surface0);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* colorful per-item palettes using existing vars */
+.carousel-item:nth-child(6n+1) .carousel-card {
+  background: linear-gradient(135deg, var(--cp-rosewater) 0%, var(--cp-flamingo) 100%);
+  color: var(--cp-surface0);
+  box-shadow: 0 12px 30px rgba(242,205,205,.12);
+}
+.carousel-item:nth-child(6n+2) .carousel-card {
+  background: linear-gradient(135deg, var(--cp-pink) 0%, var(--cp-mauve) 100%);
+  color: var(--cp-surface0);
+  box-shadow: 0 12px 30px rgba(203,166,247,.10);
+}
+.carousel-item:nth-child(6n+3) .carousel-card {
+  background: linear-gradient(135deg, var(--cp-peach) 0%, var(--cp-yellow) 100%);
+  color: var(--cp-surface0);
+  box-shadow: 0 12px 30px rgba(250,179,135,.10);
+}
+.carousel-item:nth-child(6n+4) .carousel-card {
+  background: linear-gradient(135deg, var(--cp-green) 0%, var(--cp-teal) 100%);
+  color: var(--cp-surface0);
+  box-shadow: 0 12px 30px rgba(166,227,161,.10);
+}
+.carousel-item:nth-child(6n+5) .carousel-card {
+  background: linear-gradient(135deg, var(--cp-sky) 0%, var(--cp-sapphire) 100%);
+  color: var(--cp-surface0);
+  box-shadow: 0 12px 30px rgba(116,199,236,.10);
+}
+.carousel-item:nth-child(6n+6) .carousel-card {
+  background: linear-gradient(135deg, var(--cp-lavender) 0%, var(--cp-blue) 100%);
+  color: var(--cp-surface0);
+  box-shadow: 0 12px 30px rgba(137,180,250,.10);
+}
+
+/* active card accent */
+.carousel-item.active .carousel-card {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 18px 48px rgba(0,0,0,.32), 0 6px 30px rgba(0,0,0,.18);
+  border: 1px solid rgba(0,0,0,.06);
+}
+
+/* hover states to increase vibrancy */
+.carousel-item:hover .carousel-card { filter: saturate(1.06); transform: translateY(-3px); }
+
+/* Controls row below the carousel */
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+/* nav buttons */
+.carousel-nav {
+  background: linear-gradient(180deg, var(--cp-overlay2), var(--cp-overlay1));
+  border: 0px solid rgba(0,0,0,0.06);
+  color: var(--cp-surface0);
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--cp-shadow);
+  font-size: 26px;
+  transition: transform 160ms, opacity 160ms;
+}
+.carousel-nav:disabled { opacity: .32; cursor: default; transform: none; }
+/* .carousel-nav:not(:disabled):active { transform: scale(.98); } */
+
+/* random button style */
+.carousel-random {
+  background: linear-gradient(180deg, var(--cp-overlay2), var(--cp-overlay1));
+  border: 1px solid rgba(0,0,0,0.06);
+  color: var(--cp-surface0);
+  width: 56px;
+  height: 48px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--cp-shadow);
+  font-size: 18px;
+  transition: transform 160ms, opacity 160ms;
+}
+.carousel-random:active { transform: scale(.98); }
+
+/* responsive tweaks */
+@media (max-width: 720px) {
+  .carousel { max-width: 680px; }
+  .carousel-item { width: 150px; height: 140px; }
+  .carousel-card-title { font-size: 14px; }
+}
+@media (max-width: 420px) {
+  .carousel { padding: 8px; }
+  .carousel-item { width: 140px; height: 130px; }
+  .carousel-card-title { font-size: 13px; }
+  .carousel-nav, .carousel-random { width: 44px; height: 44px; }
+}
+
+/* Flashcard viewer styles */
+/* Flashcard viewer: centered panel and accent handling */
+.flashcard-viewer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 48px);
+  padding: 20px;
+  box-sizing: border-box;
+}
+.flashcard-panel {
+  width: 100%;
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 12px;
+  box-sizing: border-box;
+  /* per-category accent color (can be set from JS by updating this variable on the panel)
+     default maps to a pleasant blue so category text is colorful */
+  --flashcard-category-accent: var(--cp-blue);
+}
+.flashcard-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.flashcard-progress {
+  --flashcard-progress-percent: 0%; /* set inline from JS to show visual fill */
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  min-width: 84px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--cp-surface0);
+  background: linear-gradient(180deg, var(--cp-overlay2), var(--cp-overlay1));
+  border-radius: 10px;
+  border: 0px solid rgba(0,0,0,0.06);
+  box-shadow: var(--cp-shadow);
+  overflow: hidden;
+}
+.flashcard-progress::before {
+  /* subtle visual fill; width can be controlled with --flashcard-progress-percent */
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: var(--flashcard-progress-percent, 0%);
+  background: linear-gradient(90deg, rgba(var(--cp-rosewater-rgb,245,224,220),.18), rgba(var(--cp-sapphire-rgb,116,199,236),.18));
+  opacity: 1;
+  z-index: 0;
+}
+.flashcard-progress__text {
+  position: relative;
+  z-index: 1;
+  color: var(--cp-surface0);
+}
+.flashcard-back {
+  background: transparent;
+  color: var(--cp-text);
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+.flashcard-main {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flashcard-card {
+  width: 100%;
+  max-width: 640px;
+  /* fixed card height to keep layout stable */
+  --flashcard-card-h: 150px;
+  height: var(--flashcard-card-h);
+  background: linear-gradient(180deg, rgba(var(--cp-rosewater-rgb,245,224,220), .08), rgba(var(--cp-blue-rgb,137,180,250), .04));
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 18px 48px rgba(0,0,0,.36);
+  color: var(--cp-surface0);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: stretch;
+  text-align: center;
+  margin: 0 auto; /* center card */
+}
+
+/* Card stack visuals for swipe interactions */
+.card-stack { position: relative; width: 100%; max-width: 640px; height: var(--flashcard-card-h); }
+.card-stack .flashcard-card { position: absolute; left: 0; top: 0; right: 0; }
+.card-stack .under-card {
+  transform: translateY(10px) scale(0.96);
+  opacity: 0.9;
+  z-index: 1;
+  pointer-events: none;
+}
+.card-stack .top-card { z-index: 2; }
+.flashcard-category {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--flashcard-category-accent);
+  letter-spacing: 0.6px;
+}
+.flashcard-question {
+    height: 100%;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+  /* lighter than the category accent but still high contrast against card bg */
+  color: var(--cp-subtext1);
+  /* ensure long text doesn't resize the card; make it scrollable */
+  overflow: auto;
+  /* hide native scrollbars but keep scrolling enabled */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  /* reserve space for category and padding: subtract ~80px (category + gaps) */
+  max-height: calc(var(--flashcard-card-h) - 120px);
+  text-align: center;
+  padding: 6px 4px;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+/* hide webkit scrollbars for the flashcard question area */
+.flashcard-question::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+.flashcard-controls {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.flashcard-prev,
+.flashcard-next {
+  /* match carousel nav styling */
+  background: linear-gradient(180deg, var(--cp-overlay2), var(--cp-overlay1));
+  border: 0px solid rgba(0,0,0,0.06);
+  color: var(--cp-surface0);
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--cp-shadow);
+  font-size: 26px;
+  transition: transform 160ms, opacity 160ms;
+}
+.flashcard-prev:disabled,
+.flashcard-next:disabled { opacity: .32; cursor: default; transform: none; }
+
+@media (max-width: 520px) {
+  .flashcard-card { padding: 18px; }
+  .flashcard-question { font-size: 18px; }
+}
+
+/* Drag & animation helpers for flashcard swipe */
+.flashcard-card {
+  transition: transform 220ms cubic-bezier(.2,.9,.2,1);
+  will-change: transform;
+  touch-action: pan-y; /* allow vertical scroll while preventing horizontal touch actions */
+  cursor: grab;
+}
+.flashcard-card.dragging {
+  transition: none;
+  cursor: grabbing;
+}
+.flashcard-card.animating {
+  transition: transform 320ms cubic-bezier(.2,.9,.2,1);
+}
